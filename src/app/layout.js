@@ -1,9 +1,11 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
+import MainWrapper from "@/components/MainWrapper";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const outfitFont = Outfit({
+  variable: '--font-outfit',
+  subsets: ['latin'], // You can add other subsets if needed
+  weight: ['300', '400', '500', '600', '700'], // Add weights you plan to use
 });
 
 const geistMono = Geist_Mono({
@@ -20,9 +22,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${outfitFont.variable} antialiased`}
       >
-        {children}
+        <MainWrapper>{children} </MainWrapper>
       </body>
     </html>
   );
