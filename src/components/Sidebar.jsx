@@ -10,6 +10,7 @@ import { TbCategory } from "react-icons/tb";
 import { MdOutlineDarkMode } from "react-icons/md";
 import TodoContainer from "./TodoContainer/TodoContainer";
 import DoughnutChart from "./DoughnutChart";
+import { useSelector } from "react-redux";
 
 const sidebarNavigations = [
   {
@@ -43,6 +44,7 @@ const Sidebar = () => {
   const [isMenuClicked, setIsMenuClicked] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [defaultRoute, setDefaultRoute] = useState("All Tasks")
+  const listLength = useSelector((state) => state.tasks);
 
   const handleDarkMode = () => {
     setIsDarkMode((prevMode) => {
@@ -147,7 +149,7 @@ const Sidebar = () => {
                       <p className="font-medium text-[0.8rem]">Today Tasks</p>
                       <BsExclamationCircleFill className="text-[#bdbdbd] text-[0.7rem]" />
                     </div>
-                    <h3 className="text-[1.2rem] font-medium">11</h3>
+                    <h3 className="text-[1.2rem] font-medium">{listLength.length}</h3>
                   </div>
                 </div>
                 <div className="px-3 py-2 flex justify-center w-full">
@@ -157,7 +159,7 @@ const Sidebar = () => {
             </div>
           </div>
         </div>
-        <div className={`transition-all pr-6 ${isMenuClicked ? "w-full": "delay-300 w-[75%]"}`}>
+        <div className={`transition-all px-3 ${isMenuClicked ? "w-full": "delay-300 w-[75%]"}`}>
           <TodoContainer route={defaultRoute} />
         </div>
       </div>

@@ -18,8 +18,8 @@ const taskSlice = createSlice({
         id: Date.now(),
         task: action.payload.task,
         isCompleted: false,
-        isStarred: false,
-        dueDate: null,
+        isStarred: action.payload.isStarred,
+        dueDate: action.payload.dueDate,
       };
       state.push(newTask);
     },
@@ -40,7 +40,8 @@ const taskSlice = createSlice({
       }
     },
     taskCompleted: (state, action) => {
-        const taskFind = state.find((item) => item.id === action.payload.id);
+      console.log("State before update:", state);
+      const taskFind = state.find((item) => item.id === action.payload.id);
       if (taskFind) {
         taskFind.isCompleted = action.payload.isCompleted;
       } else {
